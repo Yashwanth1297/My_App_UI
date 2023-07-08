@@ -1,0 +1,16 @@
+.upload{
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.upload button{
+    height: 50px;
+    width:100px;
+    background-color: blue;
+    color: aliceblue;
+    border-radius: 10px;;
+}

@@ -1,0 +1,28 @@
+@import "../../commons/colors.scss";
+
+.header{
+    background-color:$secondary-color ;
+    height:60px;
+    padding:0px 40px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    color:white;
+
+}
+.AppName{
+    
+    color:orange;
+    font-size: 20px;
+    
+}
+
+:link{
+    text-decoration:none;
+    
+}
+.navigation :any-link{
+    color:white;
+    text-decoration: none;
+    padding:20px;
+}
