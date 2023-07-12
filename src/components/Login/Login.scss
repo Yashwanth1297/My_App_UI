@@ -7,13 +7,29 @@
     gap: 5px;
 }
 
-#btn{
+#btnl{
     height: 50px;
     width:270px;
     background-color: blue;
     color: aliceblue;
-    border:10px;
-    
+    border-radius:10px;
+    margin:10px;
+}
+
+#btnr{
+    height: 50px;
+    width:200px;
+    background-color: green;
+    color: aliceblue;
+    border-radius:10px;
+    margin:10px;
+}
+
+.login_form{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .login_form input{

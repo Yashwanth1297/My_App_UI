@@ -2,6 +2,7 @@ import React from "react";
 import About from "./components/About/About";
 import Upload from "./components/Upload/Upload";
 import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 import Download from "./components/Download";
 import {Route,Routes} from "react-router-dom";
 import Footer from "./components/Footer/Footer";
@@ -19,6 +20,7 @@ function App() {
       <Route path="/About" element={<About />} />
       <Route path="/Upload" element={<Upload />} />
       <Route path="/Download" element={<Download />} />
+      <Route path ="/Register" element = {<Register />} />
       </Routes>
       <Footer /></>):<Login />}
       

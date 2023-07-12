@@ -1,7 +1,9 @@
 import React from "react";
 import "./Login.scss";
+// import Register from "/Register/Register.js";
 import { useSelector,useDispatch } from "react-redux";
 import loginState from "../../Actions/user";
+import Register from "../Register/Register";
 
 function Login(){
     const dispatch = useDispatch();
@@ -11,7 +13,8 @@ function Login(){
         <form className="login_form">
         <input type="text" placeholder="Username" name="uname"></input>
         <input type="password" placeholder="Password" name="password"></input>
-        <input id="btn" type="submit" onClick={()=>dispatch(loginState())}></input>
+        <button id="btnl" onClick={()=>dispatch(loginState())}>Login</button>
+        <button id="btnr" onClick={() =>{return <Register />}}>Create new account</button>
         </form>
     </div>)
 }
