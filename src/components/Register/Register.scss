@@ -1,0 +1,42 @@
+.signup{
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.Registration_form{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Registration_form input{
+    height:20px;
+    width:250px;
+    border-radius: 10px;
+    padding: 10px;
+    line-height: 1.5;
+    display: block;
+    margin:10px;
+}
+
+#btn{
+height: 50px;
+width:270px;
+background-color: green;
+color: aliceblue;
+border-radius:10px;
+margin:10px;
+cursor: pointer;
+}
+
+#link_btn{
+    background: none;
+    color:blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
