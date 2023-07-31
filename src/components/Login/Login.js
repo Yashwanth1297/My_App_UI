@@ -4,8 +4,9 @@ import "./Login.scss";
 import {Navigate,Route,Routes} from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import loginState from "../../Actions/user";
-import {login} from "../../Services/userService";
+import updateToken from "../../Actions/updateToken";
+import {login} from "../../Actions/updateToken";
+import Error from "../Error";
 
 
 function Login(props){
@@ -21,14 +22,13 @@ function Login(props){
       let path = '/Register'; 
       navigate(path);
     }
-
-
+    
     return (<div className="signin">
         <h1 className="app">CSA</h1>
         <h2>Hello! Please Login</h2>
         <form onSubmit={(e) => {
             e.preventDefault();
-            login(userData)
+            dispatch(updateToken(userData))
         }} className="login_form">
         <input value ={email} onChange = {(e) => setEmail(e.target.value)} type="text" placeholder="Username" name="uname"></input>
         <input value ={pass} onChange = {(e) => setPass(e.target.value)} type="password" placeholder="Password" name="password"></input>

@@ -6,7 +6,7 @@ import Upload from "./components/Upload/Upload";
 import Download from "./components/Download";
 import {Navigate,Route,Routes} from "react-router-dom";
 import "./App.scss";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 function App() {
   return (
     <div className="container">
@@ -18,6 +18,8 @@ function App() {
       <Route path="/Upload" element={<Upload />} />
       <Route path="/Download" element={<Download />} />
       </Routes>
+
+      {}
     </div>
   );
 }
