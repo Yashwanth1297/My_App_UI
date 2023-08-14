@@ -4,8 +4,7 @@ import {config} from "../Config/env.config";
 export const login  = async (userData)=>{
     try{
         const response = await axios.post(config.Backend_API +'/Login',userData);
-        console.log("response",response.status);
-        return response;
+        return response.data;
     }catch(e){
         console.log(e);
     }

@@ -1,25 +1,43 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import About from "./components/About/About";
 import Upload from "./components/Upload/Upload";
 import Download from "./components/Download";
-import {Navigate,Route,Routes} from "react-router-dom";
+import Header from "./components/Header/Header";
+import PrivateRoute from "./components/privateRoute";
+import {BrowserRouter, Link, Navigate,Route,Router,Routes, useNavigate } from "react-router-dom";
 import "./App.scss";
-import { useSelector} from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
+import { logOut, signIn,token_check } from "./Actions/updateToken";
 function App() {
+
+  const isLoggedIn = useSelector((state) => state.logged.isLoggedin);
+  const dispatch = useDispatch();
+
+  useEffect(() =>{
+    const token = localStorage.getItem("token");
+    if(token){
+      dispatch(token_check())
+    } else {
+      dispatch(logOut());
+    }
+  },[dispatch])
+  
   return (
     <div className="container">
-      <Routes>
-      <Route path ="/" element = {<Login />} />
-      <Route path ="/Login" element = {<Login />} />
-      <Route path ="/Register" element = {<Register />} />
-      <Route path="/About" element={<About />} />
-      <Route path="/Upload" element={<Upload />} />
-      <Route path="/Download" element={<Download />} />
-      </Routes>
-
-      {}
+      {console.log("Inside")}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} /> 
+          <Route path="/home" element={<PrivateRoute><Header /></PrivateRoute>}>         
+          <Route path="about" element={<About />} />
+          <Route path="upload" element={<Upload />} />
+          <Route path="download" element={<Download />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

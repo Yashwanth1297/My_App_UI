@@ -1,14 +1,36 @@
 import {login} from "../Services/userService";
 
-const updateToken =(userData)=>{
+export const signIn  = async (userData) => {
 let token_value;
-login(userData).then((res)=>{
-    token_value = res.data.token;
-})
+let typesetting;
+try{
+const res = await login(userData);
+    token_value = res.token;
+    typesetting = "sign_in";
+    console.log('hello')
+    localStorage.setItem("token",token_value);
     return {
-        type:"sign_in",
+        type:typesetting,
         token:token_value
     }
 }
+catch(err){
+    typesetting = "default";
+    return {
+        type:typesetting,
+        token:token_value
+    }
+}
+}
 
-export default updateToken;
+export const token_check = () =>{
+    return{
+        type:"sign_in"
+    }
+}
+
+export const logOut = () =>{
+    return{
+        type:"default"
+    }
+}
