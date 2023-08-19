@@ -10,7 +10,7 @@ const PrivateRoute = ({children}) => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   if (isLoading) {

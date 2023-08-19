@@ -27,7 +27,6 @@ function App() {
   return (
     <div className="container">
       {console.log("Inside")}
-      <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} /> 
@@ -37,7 +36,6 @@ function App() {
           <Route path="download" element={<Download />} />
           </Route>
         </Routes>
-      </BrowserRouter>
     </div>
   );
 }
