@@ -26,7 +26,7 @@ export const getUser = async (data)=>{
     try{
         const response = await axios.get(config.Backend_API+'/user',{
             headers:{
-                'token': data.token
+                'token': data
             }
         })
         return response;
