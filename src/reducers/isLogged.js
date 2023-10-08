@@ -7,13 +7,11 @@ const loggedReducer = (state=loginState, action) =>{
         case "sign_in":
             return {...state,
                 isLoggedin:true,
-                token: action.token
             }
             case "default":
                 return {
                     ...state,
                     isLoggedin: false,
-                    token: undefined
                 };
 
         default:

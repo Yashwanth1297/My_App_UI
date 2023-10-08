@@ -14,13 +14,15 @@ function App() {
 
   const isLoggedIn = useSelector((state) => state.logged.isLoggedin);
   const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+
 
   useEffect(() =>{
-    const token = localStorage.getItem("token");
     if(token){
       dispatch(token_check())
     } else {
       dispatch(logOut());
+      console.log("loggedout")
     }
   },[dispatch])
   

@@ -5,6 +5,7 @@ import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {logOut} from "../../Actions/updateToken";
 import { fetchUser } from "../../Actions/fetchUser";
+import { Person, PersonCircle} from 'react-bootstrap-icons';
 export default function Header(){
 
     const dispatch = useDispatch();
@@ -23,8 +24,9 @@ export default function Header(){
 
     const { Fname, Lname } = userData || {};
 
-    return(<>
-    <header className="header">
+    return(<div>
+      {(userData) ? <>
+        <header className="header">
       <nav className="nav">
         <div className="logo">
           <h1>CSA</h1>
@@ -36,7 +38,7 @@ export default function Header(){
         </ul>
 
         <div>
-          <img src= {"userIcon.jpg"} />
+          <PersonCircle size={30} />
         </div>
         <div>
         {Fname && Lname && (
@@ -57,9 +59,10 @@ export default function Header(){
     </header>
         
          <Outlet />
-       
+       </>: navigate("/login")}
+    
 
-         </>
+         </div>
     ) 
         
 

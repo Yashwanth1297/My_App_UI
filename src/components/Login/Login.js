@@ -19,6 +19,9 @@ function Login(){
       password: pass
     };
     const Logged= useSelector((state) => state.logged.isLoggedin);
+    const data = useSelector((state) => state.user.data);
+
+    console.log("data",data);
 
     const navigate = useNavigate(); 
     const routeChange = () =>{ 
