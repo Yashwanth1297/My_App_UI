@@ -10,11 +10,20 @@ import {BrowserRouter, Link, Navigate,Route,Router,Routes, useNavigate } from "r
 import "./App.scss";
 import { useSelector,useDispatch} from "react-redux";
 import { logOut, signIn,token_check } from "./Actions/updateToken";
+import { grey } from '@mui/material/colors';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 function App() {
 
   const isLoggedIn = useSelector((state) => state.logged.isLoggedin);
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
+  const theme = createTheme({
+    palette: {
+      primary:{
+        main:grey[500]
+      } 
+    },
+  });
 
 
   useEffect(() =>{
@@ -28,7 +37,6 @@ function App() {
   
   return (
     <div className="container">
-      {console.log("Inside")}
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} /> 

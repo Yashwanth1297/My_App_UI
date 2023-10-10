@@ -7,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 import {signIn} from "../../Actions/updateToken";
 import {login} from "../../Actions/updateToken";
 import Error from "../Error";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField"
+import Button from '@mui/material/Button';
+import { Cart3 } from "react-bootstrap-icons";
 
 
 function Login(){
@@ -44,21 +48,21 @@ function Login(){
     }
     
     return (
-       <div className="signin">
+      <div className="signin">
         {(Logged)? 
         navigate("/home")
         :<>
-        <h1 className="app">CSA</h1>
-        <h2>Hello! Please Login</h2>
+        <h1>EZ-Cart <Cart3 size ={35} color="red" /></h1>
         {(loginStatus !== 'failure' && loginStatus !==null) && (
           <p className="error-message">Incorrect username or password</p>
         )}
         <form onSubmit={triggerApi} className="login_form">
-        <input value ={email} onChange = {(e) => setEmail(e.target.value)} type="text" placeholder="Username" name="uname"></input>
-        <input value ={pass} onChange = {(e) => setPass(e.target.value)} type="password" placeholder="Password" name="password"></input>
-        <button type ="submit" id="btnl">Login</button>
+        <TextField label="Email" variant="standard" value ={email} onChange = {(e) => setEmail(e.target.value)} name="uname" />
+        <TextField type ="password" label="Password" variant="standard" value ={pass} onChange = {(e) => setPass(e.target.value)} name="password" />
+        <Button variant="contained" type ="submit" id="btnl">Login</Button>
         </form>
-        <button onClick = {routeChange} id="btnr">Create new account</button>
+        <p>Don't have an account? <Button href="#text-buttons" size = "small" onClick = {routeChange} id="btnr">Sign up</Button></p> 
+        
     
     </>}
     </div>)

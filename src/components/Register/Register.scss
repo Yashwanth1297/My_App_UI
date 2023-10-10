@@ -1,10 +1,15 @@
 .signup{
     height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width:400px;
+    text-align: center;
     gap: 5px;
+    background-color: white;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:150px;
+    padding-top: 20px;
+    z-index: 1;
+    border-radius: 5px;
 }
 
 .Registration_form{
@@ -27,16 +32,9 @@
 #btn{
 height: 50px;
 width:270px;
-background-color: green;
+background-image: linear-gradient(to right,skyblue, blue , purple);
 color: aliceblue;
-border-radius:10px;
-margin:10px;
-cursor: pointer;
-}
+border-radius:20px;
+margin:20px;
 
-#link_btn{
-    background: none;
-    color:blue;
-    text-decoration: underline;
-    cursor: pointer;
 }

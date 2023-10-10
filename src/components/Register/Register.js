@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import userRegistration from "../../Actions/userRegister"
 import {register} from "../../Services/userService";
 import { useSelector,useDispatch } from "react-redux";
+import TextField from "@mui/material/TextField"
+import Button from '@mui/material/Button';
+import { Cart3 } from "react-bootstrap-icons";
 
 function Register(props){
     const [fname, setFname] = useState("");
@@ -30,8 +33,7 @@ function Register(props){
     {(regStatus)?
     navigate("/login")
     :<>
-    <h1 className="app">CSA</h1>
-    <h2>Hello! Please Register</h2>
+    <h1>EZ-Cart <Cart3 size ={35} color="red" /></h1>
     <form onSubmit = {(e) =>{
         e.preventDefault();
         userRegistration(userData).then((res) =>{
@@ -40,13 +42,13 @@ function Register(props){
           return dispatch(err)
         })
         }} className="Registration_form">
-    <input value = {fname} onChange={(e) => setFname(e.target.value)} type="text" placeholder="First Name" name="fname"></input>
-    <input value = {lname} onChange={(e) => setLname(e.target.value)} type="text" placeholder="Last Name" name="lname"></input>
-    <input value = {email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" name="email"></input>
-    <input value = {pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="Password" name="password"></input>
-    <button id="btn" type="submit">Sign Up</button>
+    <TextField label="First Name" variant="standard" value = {fname} onChange={(e) => setFname(e.target.value)} name="fname" />
+    <TextField label="Last Name" variant="standard" value = {lname} onChange={(e) => setLname(e.target.value)} name="lname" />
+    <TextField label="Email" variant="standard" value = {email} onChange={(e) => setEmail(e.target.value)} name="email" />
+    <TextField label="Password" variant="standard" value = {pass} onChange={(e) => setPass(e.target.value)} type="password" name="password" />
+    <Button id="btn" type="submit">Sign Up</Button>
     </form>
-    <button id= "link_btn" onClick = {routeChange} >Already have an account?</button>
+    <p>Already have an account? <Button href="#text-buttons" size = "small" id= "link_btn" onClick = {routeChange} >Log in</Button></p>
     </>}
     </div>)
 }
