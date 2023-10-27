@@ -1,51 +1,40 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect } from "react";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import About from "./components/About/About";
 import Upload from "./components/Upload/Upload";
 import Download from "./components/Download";
 import Header from "./components/Header/Header";
-import PrivateRoute from "./components/privateRoute";
-import {BrowserRouter, Link, Navigate,Route,Router,Routes, useNavigate } from "react-router-dom";
+// import PrivateRoute from "./components/privateRoute";
+import { Route, Routes } from "react-router-dom";
 import "./App.scss";
-import { useSelector,useDispatch} from "react-redux";
-import { logOut, signIn,token_check } from "./Actions/updateToken";
-import { grey } from '@mui/material/colors';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-function App() {
+import { logOut, token_check } from "./Actions/updateToken";
+import { useDispatch } from "react-redux";
+// import ModalComponent from "./components/Modal";
 
-  const isLoggedIn = useSelector((state) => state.logged.isLoggedin);
+function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
-  const theme = createTheme({
-    palette: {
-      primary:{
-        main:grey[500]
-      } 
-    },
-  });
-
-
-  useEffect(() =>{
-    if(token){
-      dispatch(token_check())
+  useEffect(() => {
+    if (token) {
+      dispatch(token_check());
     } else {
       dispatch(logOut());
-      console.log("loggedout")
+      console.log("loggedout");
     }
-  },[dispatch])
-  
+  }, [dispatch]);
   return (
     <div className="container">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} /> 
-          <Route path="/home" element={<PrivateRoute><Header /></PrivateRoute>}>         
+      <Routes>
+        <Route path="/" element={<Header />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/home" element={<Header />}>
           <Route path="about" element={<About />} />
           <Route path="upload" element={<Upload />} />
           <Route path="download" element={<Download />} />
-          </Route>
-        </Routes>
+        </Route>
+      </Routes>
     </div>
   );
 }

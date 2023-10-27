@@ -1,70 +1,61 @@
-import React,{useEffect} from "react";
-import {Link, Outlet} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 import "./Header.scss";
-import { useSelector,useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {logOut} from "../../Actions/updateToken";
 import { fetchUser } from "../../Actions/fetchUser";
-import { Person, PersonCircle} from 'react-bootstrap-icons';
-export default function Header(){
+import { Cart3, PersonCircle } from "react-bootstrap-icons";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import StoreIcon from "@mui/icons-material/Store";
+import ModalComponent from "../Modal";
+import { Button } from "@mui/material";
+export default function Header() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [modalState, setModelState] = useState(true);
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate(); 
-    const Logged= useSelector((state) => state.logged.isLoggedin);
-    const userData = useSelector((state) => state.user.data);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      await dispatch(fetchUser());
+      console.log("Header is mounted");
+    };
+    fetchUserData();
+  }, [dispatch]);
 
-
-    useEffect(() =>{
-      const fetchUserData = async () => {
-        await dispatch(fetchUser());
-        console.log("Header is mounted");
-      };
-      fetchUserData();
-    },[dispatch])
-
-    const { Fname, Lname } = userData || {};
-
-    return(<div>
-      {(userData) ? <>
-        <header className="header">
-      <nav className="nav">
-        <div className="logo">
-          <h1>CSA</h1>
-        </div>
-        <ul className="nav-links">
-          <li><Link to="about">About</Link></li>
-          <li><Link to ="upload">Upload</Link></li>
-          <li><Link to ="download">Download</Link></li>
-        </ul>
-
+  return (
+    <div>
+      <ModalComponent isOpen={modalState}>
         <div>
-          <PersonCircle size={30} />
+          <h1>Register</h1>
+          <Button onClick={() => navigate("/Register")}>
+            <PersonAddIcon fontSize="large" />
+          </Button>
         </div>
         <div>
-        {Fname && Lname && (
-            <p>Hello {Fname} {Lname}</p>
-        )}
+          <h1>EShop</h1>
+          <Button onClick={() => setModelState(false)}>
+            <StoreIcon fontSize="large" />
+          </Button>
         </div>
-        <div className="logout-btn">
-          <button onClick={(e) => {
-            e.preventDefault();
-            dispatch(logOut());
-            navigate("/login");
-            console.log("Logged",Logged)
-          }}>Logout</button>
-        </div>
-      </nav>
-
-      
-    </header>
-        
-         <Outlet />
-       </>: navigate("/login")}
-    
-
-         </div>
-    ) 
-        
-
-
+      </ModalComponent>
+      <header className="header">
+        <nav className="nav">
+          <div className="logo">
+            <h1>
+              EZ-Cart <Cart3 />
+            </h1>
+          </div>
+          <ul className="nav-links">
+            <li>
+              <Link to="Products">Products</Link>
+            </li>
+          </ul>
+          <div>
+            <PersonCircle size={30} />
+          </div>
+        </nav>
+      </header>
+      <Outlet />
+    </div>
+  );
 }

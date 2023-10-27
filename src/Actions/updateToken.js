@@ -1,32 +1,30 @@
-import {login} from "../Services/userService";
+import { login } from "../Services/userService";
 
-export const signIn  = async (userData) => {
-let token_value;
-let typesetting;
-try{
-const res = await login(userData);
-localStorage.setItem("token",res.accessToken);
+export const signIn = async (userData) => {
+  let typesetting;
+  try {
+    const res = await login(userData);
+    localStorage.setItem("token", res.accessToken);
     return {
-        type:"sign_in",
-    }
-}
-catch(err){
+      type: "sign_in",
+    };
+  } catch (err) {
     typesetting = "default";
     return {
-        type:typesetting,
-    }
-}
-}
+      type: typesetting,
+    };
+  }
+};
 
-export const token_check = () =>{
-    return{
-        type:"sign_in"
-    }
-}
+export const token_check = () => {
+  return {
+    type: "sign_in",
+  };
+};
 
-export const logOut = () =>{
-    localStorage.removeItem("token");
-    return{
-        type:"default"
-    }
-}
+export const logOut = () => {
+  localStorage.removeItem("token");
+  return {
+    type: "default",
+  };
+};

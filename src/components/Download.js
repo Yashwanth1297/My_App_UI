@@ -1,1 +1,1 @@
-export default function Download(){}
+export default function Download() {}

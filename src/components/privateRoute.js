@@ -1,8 +1,9 @@
-import React,{useEffect,useState} from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const PrivateRoute = ({children}) => {
+// eslint-disable-next-line react/prop-types
+const PrivateRoute = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const isLoggedIn = useSelector((state) => state.logged.isLoggedin);
   const navigate = useNavigate();
@@ -17,10 +18,7 @@ const PrivateRoute = ({children}) => {
     return <div>Loading...</div>;
   }
 
-  return (<>
-        {isLoggedIn ? children : navigate("/login")}
-        </>
-  )
+  return <>{isLoggedIn ? children : navigate("/login")}</>;
 };
 
 export default PrivateRoute;
